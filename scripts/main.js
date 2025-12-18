@@ -16,6 +16,11 @@ function convertOperatorSymbol(op) {
 }
 
 function convertInput(input) {
+  if (/[a-zA-Z]/.test(input)) {
+    alert("Invalid Input. Enter numbers only");
+    userInput.value = "";
+    return;
+  }
   let operatorIndex = -1;
 
   for (let i = 0; i < input.length; i++) {
