@@ -13,15 +13,19 @@ body {
 }
 
 .container {
-  border: 2px solid red;
-  padding: 10px;
+  padding: 20px 10px;
+  border: none;
+  border-radius: 20px;
+  background-color: #333138;
 }
 
 .user-input {
   font-size: 32px;
   padding: 10px;
   text-align: right;
-  margin: 5px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .button-rows {
@@ -44,6 +48,8 @@ body {
   font-size: 32px;
   padding: 5px;
   margin: 5px;
+  border: none;
+  border-radius: 10px;
 }
 
 .clear-btn {
