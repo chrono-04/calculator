@@ -5,11 +5,34 @@ let num1 = 0,
   num2 = 0,
   operator;
 
+function convertOperatorSymbol(op) {
+  const operatorMap = {
+    "+": "+",
+    "-": "-",
+    "×": "*",
+    "÷": "/",
+  };
+  return operatorMap[op] || op;
+}
+
 function convertInput(input) {
-  let splittedInput = input.match(/(\d+)([+\-*/])(\d+)/).slice(1);
-  num1 = Number(splittedInput[0]);
-  operator = splittedInput[1];
-  num2 = Number(splittedInput[2]);
+  let operatorIndex = -1;
+
+  for (let i = 0; i < input.length; i++) {
+    if (["+", "-", "×", "÷"].includes(input[i])) {
+      operator = input[i];
+      operatorIndex = i;
+      break;
+    }
+  }
+
+  // split by operator position
+  num1 = Number(input.slice(0, operatorIndex));
+  num2 = Number(input.slice(operatorIndex + 1));
+
+  // convert symbols
+  if (operator === "×") operator = "*";
+  if (operator === "÷") operator = "/";
 }
 
 function calculate(firstNum, secondNum, op) {
@@ -27,13 +50,13 @@ function calculate(firstNum, secondNum, op) {
       userInput.value = "";
       userInput.value = total;
       break;
-    case "×":
+    case "*":
       total = firstNum * secondNum;
       console.log(total);
       userInput.value = "";
       userInput.value = total;
       break;
-    case "÷":
+    case "/":
       total = firstNum / secondNum;
       console.log(total);
       userInput.value = "";
@@ -68,8 +91,8 @@ buttons.addEventListener("click", (event) => {
       break;
     case "equals":
       console.log("Pressed equal button");
-      let text = convertInput(userInput.value);
       console.log(`num1: ${num1} operator: ${operator} num2: ${num2}`);
+      convertInput(userInput.value);
       calculate(num1, num2, operator);
       break;
     case "seven":
